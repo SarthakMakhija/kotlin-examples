@@ -38,5 +38,5 @@ class AggregateSum(
         }
     }
 
-    fun sum(elements: List<Int>): Long = elements.sum().toLong()
+    private fun sum(elements: List<Int>): Long = elements.sum().toLong()
 }
