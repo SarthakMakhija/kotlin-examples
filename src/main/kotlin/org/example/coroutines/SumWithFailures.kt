@@ -30,3 +30,4 @@ class SumWithFailures(private val elements: List<Int?>, private val chunkSize: I
         else elements.filterNotNull().sum().toLong()
     }
 }
+

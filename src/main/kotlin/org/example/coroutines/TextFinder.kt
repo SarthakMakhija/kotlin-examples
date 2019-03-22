@@ -38,4 +38,23 @@ class TextFinderAggregate(private val sourcePaths: List<String>) {
                 }
         }
     }
+
+    suspend fun findTextSources(query: String): List<String> {
+        return coroutineScope {
+            sourcePaths
+                .map { filePath ->
+                    Pair(filePath,
+                        async {
+                            println("Running TextFinder in ${Thread.currentThread().name} for $filePath")
+                            TextFinder(filePath).isTextPresent(query)
+                        })
+                }
+                .filter { pair ->
+                    pair.second.await()
+                }
+                .map { pair ->
+                    pair.first
+                }
+        }
+    }
 }
