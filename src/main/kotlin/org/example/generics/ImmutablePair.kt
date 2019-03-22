@@ -1,6 +1,6 @@
 package org.example.generics
 
-class ImmutablePair<T : Any, S : Any>(private val first: T, private val second: S) {
+class ImmutablePair<out T : Any, out S : Any>(private val first: T, private val second: S) {
 
     fun swap(): ImmutablePair<S, T> {
         return ImmutablePair(this.second, this.first)
