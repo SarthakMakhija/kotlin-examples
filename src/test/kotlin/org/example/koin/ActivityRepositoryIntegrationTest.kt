@@ -1,24 +1,29 @@
 package org.example.koin
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ActivityRepositoryIntegrationTest : KoinTest {
 
-    @BeforeAll
+    @BeforeEach
     fun setUp() {
         startKoin {
             modules(module {
                 single { ActivityRepository() }
             })
         }
+    }
+
+    @AfterEach
+    fun tearDown() {
+        GlobalContext.stop()
     }
 
     private val activityRepository : ActivityRepository by inject()
