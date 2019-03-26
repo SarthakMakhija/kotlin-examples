@@ -21,9 +21,13 @@ repositories {
 
 dependencies {
     compile         "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile         "org.koin:koin-core:2.0.0-rc-1"
     implementation  "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
     
     testCompile        "org.assertj:assertj-core:3.12.2"
+    testCompile        "org.koin:koin-test:2.0.0-rc-1"
+
+    testImplementation "io.mockk:mockk:1.9"
     testImplementation "org.junit.jupiter:junit-jupiter:5.4.1"
 }
 
